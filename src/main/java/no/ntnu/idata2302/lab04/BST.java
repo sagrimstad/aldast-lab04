@@ -70,16 +70,28 @@ public class BST {
     return right != null;
   }
 
+  /**
+   * Returns the minimum value in the Tree.
+   *
+   * @return the minimum value in the Tree.
+   */
   int minimum() {
-    // TODO: Implement this operation
-    throw new RuntimeException("Not yet implemented!");
-
+    if (hasLeft()) {
+      this.value = this.left.minimum();
+    }
+    return this.value;
   }
 
+  /**
+   * Returns the maximum value in the Tree.
+   *
+   * @return the maximum value in the Tree.
+   */
   int maximum() {
-    // TODO: Implement this operation
-    throw new RuntimeException("Not yet implemented!");
-
+    if(hasRight()) {
+      this.value = this.right.maximum();
+    }
+    return this.value;
   }
 
   boolean contains(int givenValue) {
