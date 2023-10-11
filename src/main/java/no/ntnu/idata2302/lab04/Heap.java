@@ -19,9 +19,25 @@ public class Heap {
         array.add(0);
     }
 
+    /**
+     * Inserts a specified value to the binary heap.
+     * 
+     * The heap is sorted after the insertion by going through each parent node from the inserted
+     * node and using bubble up operations if necessary.
+     * 
+     * @param k A specified value to be insterted.
+     */
     public void insert(Integer k) {
-        // TODO: Implement this operation
-        throw new RuntimeException("Not yet implemented");
+        array.add(k);
+        int nodeIndex = array.size() - 1;
+        while(nodeIndex != 0) {
+            int parentIndex = parentOf(nodeIndex);
+            int difference = array.get(parentIndex).compareTo(array.get(nodeIndex));
+            if(difference > 0) {
+                swap(parentIndex, nodeIndex);
+            }
+            nodeIndex = parentIndex;
+        }
     }
 
     public int takeMinimum() {
