@@ -16,7 +16,7 @@ public class Heap {
 
     public Heap() {
         array = new ArrayList<Integer>();
-        array.add(0);
+        // array.add(0);
     }
 
     /**
@@ -29,20 +29,47 @@ public class Heap {
      */
     public void insert(Integer k) {
         array.add(k);
+        // Bubble up
         int nodeIndex = array.size() - 1;
-        while(nodeIndex != 0) {
+        while (nodeIndex != 0) {
             int parentIndex = parentOf(nodeIndex);
             int difference = array.get(parentIndex).compareTo(array.get(nodeIndex));
-            if(difference > 0) {
+            if (difference > 0) {
                 swap(parentIndex, nodeIndex);
             }
             nodeIndex = parentIndex;
         }
     }
 
+    /**
+     * Returns the minimum value of the binary heap and deletes it.
+     * 
+     * The heap is sorted after the deletion by going through each child node from the root node
+     * and using bubble down operations if necessary.
+     * 
+     * @return The minimum value of the binary heap and deletes it.
+     */
     public int takeMinimum() {
-        // TODO: Implement this operation
-        throw new RuntimeException("Not yet implemented");
+        int lastIndex = array.size() - 1;
+        swap(lastIndex, 0);
+        int minimum = array.remove(lastIndex);
+        // Bubble down
+        int parentIndex = 0;
+        while (array.indexOf(leftChildOf(parentIndex)) <= lastIndex) {
+            int minimumChildIndex;
+            if (array.indexOf(rightChildOf(parentIndex)) <= lastIndex) {
+                minimumChildIndex = Math.min(leftChildOf(parentIndex), rightChildOf(parentIndex));
+            } else {
+                minimumChildIndex = leftChildOf(parentIndex);
+            }
+            int difference = array.get(parentIndex).compareTo(array.get(minimumChildIndex));
+            if (difference <= 0) {
+                break;
+            }
+            swap(parentIndex, minimumChildIndex);
+            parentIndex = minimumChildIndex;
+        }
+        return minimum;
     }
 
     public void decreaseKey(int i, int k) {
@@ -55,11 +82,11 @@ public class Heap {
     }
 
     private int leftChildOf(int index) {
-        return index * 2;
+        return index * 2 + 1;
     }
 
     private int rightChildOf(int index) {
-        return index * 2 + 1;
+        return index * 2 + 2;
     }
 
     void swap(int pos1, int pos2) {
