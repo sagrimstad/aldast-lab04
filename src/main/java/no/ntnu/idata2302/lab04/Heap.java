@@ -22,10 +22,10 @@ public class Heap {
     /**
      * Inserts a specified value to the binary heap.
      * 
-     * The heap is sorted after the insertion by going through each parent node from the inserted
-     * node and using bubble up operations if necessary.
+     * <p>The heap is sorted after the insertion by going through each parent node from the inserted
+     * node and using bubble up operations if necessary.</p>
      * 
-     * @param k A specified value to be insterted.
+     * @param k A specified value to be insterted
      */
     public void insert(Integer k) {
         array.add(k);
@@ -44,10 +44,10 @@ public class Heap {
     /**
      * Returns the minimum value of the binary heap and deletes it.
      * 
-     * The heap is sorted after the deletion by going through each child node from the root node
-     * and using bubble down operations if necessary.
+     * <p>The heap is sorted after the deletion by going through each child node from the root node
+     * and using bubble down operations if necessary.</p>
      * 
-     * @return The minimum value of the binary heap and deletes it.
+     * @return The minimum value of the binary heap and deletes it
      */
     public int takeMinimum() {
         int lastIndex = array.size() - 1;
