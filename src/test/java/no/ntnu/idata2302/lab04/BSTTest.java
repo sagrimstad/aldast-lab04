@@ -64,4 +64,29 @@ public class BSTTest {
         assertEquals(8, tree.maximum());
     }
 
+    @Test
+    public void testFormatWithEmptyTree() {
+        assertEquals("", tree.format());
+    }
+
+    @Test
+    public void testFormatWithSingleNode() {
+        tree.insert(42);
+        assertEquals("42", tree.format());
+    }
+
+    @Test
+    public void testFormatWithMultipleNodes() {
+        tree.insert(5);
+        tree.insert(2);
+        tree.insert(8);
+        tree.insert(1);
+        tree.insert(3);
+        assertEquals("1, 2, 3, 5, 8", tree.format());
+    }
+
+    @Test
+    public void testFormatMethod() {
+        assertEquals("2, 4, 5, 7, 8", tree.format());
+    }
 }
