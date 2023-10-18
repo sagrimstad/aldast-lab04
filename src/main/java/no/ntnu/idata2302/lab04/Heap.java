@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class Heap {
 
-    public static Heap fromValues(int... values) {
-        var heap = new Heap();
-        for (var each : values) {
-            heap.insert(each);
-        }
-        return heap;
+  public static Heap fromValues(int... values) {
+    var heap = new Heap();
+    for (var each : values) {
+      heap.insert(each);
     }
+    return heap;
+  }
 
-    private ArrayList<Integer> array;
+  private ArrayList<Integer> array;
 
     public Heap() {
         array = new ArrayList<Integer>();
@@ -72,14 +72,14 @@ public class Heap {
         return minimum;
     }
 
-    public void decreaseKey(int i, int k) {
-        // TODO: Implement this operation
-        throw new RuntimeException("Not yet implemented");
-    }
+  public void decreaseKey(int i, int k) {
+    // TODO: Implement this operation
+    throw new RuntimeException("Not yet implemented");
+  }
 
-    private int parentOf(int index) {
-        return index / 2;
-    }
+  private int parentOf(int index) {
+    return index / 2;
+  }
 
     private int leftChildOf(int index) {
         return index * 2 + 1;
@@ -89,9 +89,9 @@ public class Heap {
         return index * 2 + 2;
     }
 
-    void swap(int pos1, int pos2) {
-        int temp = array.get(pos1);
-        array.set(pos1, array.get(pos2));
-        array.set(pos2, temp);
-    }
+  void swap(int pos1, int pos2) {
+    int temp = array.get(pos1);
+    array.set(pos1, array.get(pos2));
+    array.set(pos2, temp);
+  }
 }

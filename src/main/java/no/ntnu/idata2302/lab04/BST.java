@@ -88,7 +88,7 @@ public class BST {
    * @return the maximum value in the Tree.
    */
   int maximum() {
-    if(hasRight()) {
+    if (hasRight()) {
       this.value = this.right.maximum();
     }
     return this.value;
@@ -180,9 +180,34 @@ public class BST {
     }
   }
 
+  /**
+   * Responsible for generating a formatted string representation of the Binary Search Tree (BST)
+   * by listing all the values in ascending order, separated by commas.
+   *
+   * @return a new formatted string representation of the tree
+   */
   public String format() {
-    // TODO: Implement this operation
-    throw new RuntimeException("Not yet implemented!");
+    StringBuilder formattedString = new StringBuilder();
+    inOrderTraversal(formattedString);
+    return formattedString.toString();
+  }
+
+  /**
+   * Traverse the tree in an in order traversal and appending a ", " for every node.
+   *
+   * @param formattedString the newly formatted string
+   */
+  private void inOrderTraversal(StringBuilder formattedString) {
+    if (this.left != null) {
+      this.left.inOrderTraversal(formattedString);
+    }
+    if (formattedString.length() > 0) {
+      formattedString.append(", ");
+    }
+    formattedString.append(this.value);
+    if (this.right != null) {
+      this.right.inOrderTraversal(formattedString);
+    }
   }
 
 }
