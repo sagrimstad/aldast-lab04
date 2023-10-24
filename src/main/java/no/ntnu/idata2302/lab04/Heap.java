@@ -77,9 +77,35 @@ public class Heap {
     return minimum;
   }
 
-  public void decreaseKey(int i, int k) {
-    // TODO: Implement this operation
-    throw new RuntimeException("Not yet implemented");
+  /**
+   * Sets the value at a specified index to a specified value.
+   * 
+   * <p>The heap is sorted after the value is set at the index by going through each parent node
+   * from the node the value was set at and using bubble up operations if necessary.</p>
+   * 
+   * <p>A specified value cannot be greater than or equal to the value at a specified index.</p>
+   * 
+   * @param i A specified index
+   * @param k A specified value
+   * @throws IllegalArgumentException If a specified value is greater than or equal to the value at
+   *                                  a specified index
+   */
+  public void decreaseKey(int i, int k) throws IllegalArgumentException {
+    if (k >= array.get(i)) {
+      throw new IllegalArgumentException("A specified value is greater than or equal to the " +
+                                         "value at a specified index in the decreaseKey method");
+    }
+    array.set(i, k);
+    // Bubble up
+    int nodeIndex = i;
+    while (nodeIndex != 0) {
+      int parentIndex = parentOf(nodeIndex);
+      int difference = array.get(parentIndex).compareTo(array.get(nodeIndex));
+      if (difference > 0) {
+        swap(parentIndex, nodeIndex);
+      }
+      nodeIndex = parentIndex;
+    }
   }
 
   private int parentOf(int index) {
