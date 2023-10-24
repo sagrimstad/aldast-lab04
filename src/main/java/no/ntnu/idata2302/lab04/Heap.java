@@ -99,10 +99,4 @@ public class Heap {
     array.set(pos1, array.get(pos2));
     array.set(pos2, temp);
   }
-
-  public static void main(String[] args) {
-    var heap = Heap.fromValues(10, 20, 5, 23, 9);
-
-    var minimum = heap.takeMinimum();
-  }
 }
