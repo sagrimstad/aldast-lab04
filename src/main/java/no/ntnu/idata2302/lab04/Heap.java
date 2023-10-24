@@ -53,12 +53,17 @@ public class Heap {
     int lastIndex = array.size() - 1;
     swap(lastIndex, 0);
     int minimum = array.remove(lastIndex);
+    lastIndex--;
     // Bubble down
     int parentIndex = 0;
-    while (array.indexOf(leftChildOf(parentIndex)) <= lastIndex) {
+    while (leftChildOf(parentIndex) <= lastIndex) {
       int minimumChildIndex;
-      if (array.indexOf(rightChildOf(parentIndex)) <= lastIndex) {
-        minimumChildIndex = Math.min(leftChildOf(parentIndex), rightChildOf(parentIndex));
+      if (rightChildOf(parentIndex) <= lastIndex) {
+        if (array.get(leftChildOf(parentIndex)) <= array.get(rightChildOf(parentIndex))) {
+          minimumChildIndex = leftChildOf(parentIndex);
+        } else {
+          minimumChildIndex = rightChildOf(parentIndex);
+        }
       } else {
         minimumChildIndex = leftChildOf(parentIndex);
       }
@@ -93,5 +98,11 @@ public class Heap {
     int temp = array.get(pos1);
     array.set(pos1, array.get(pos2));
     array.set(pos2, temp);
+  }
+
+  public static void main(String[] args) {
+    var heap = Heap.fromValues(10, 20, 5, 23, 9);
+
+    var minimum = heap.takeMinimum();
   }
 }
